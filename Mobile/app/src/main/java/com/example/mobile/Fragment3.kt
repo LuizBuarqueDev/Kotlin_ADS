@@ -1,4 +1,6 @@
-package com.example.mobile;
+package com.example.mobile
 
-public class Fragment3 {
+import androidx.fragment.app.Fragment
+
+class Fragment3 : Fragment(R.layout.fragment3) {
 }

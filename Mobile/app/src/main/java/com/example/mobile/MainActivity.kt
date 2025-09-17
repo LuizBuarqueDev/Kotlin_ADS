@@ -1,6 +1,8 @@
 package com.example.mobile
 
-import android.app.Fragment
+import android.content.Intent
+import android.net.Uri
+import androidx.fragment.app.Fragment
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -37,12 +39,22 @@ class MainActivity : AppCompatActivity() {
             replaceFragment(Fragment3())
         }
 
+        val Bundle = Bundle().apply {
+
+        }
     }
-   private fun replaceFragment(fragment: androidx.fragment.app.Fragment) {
+   private fun replaceFragment(fragment: Fragment) {
        val fragmentManager = supportFragmentManager
        val fragmentTransaction = fragmentManager.beginTransaction()
        fragmentTransaction.replace(R.id.fragment_container,fragment)
        fragmentTransaction.commit()
     }
 
+    private fun callForMe () {
+        var uri = Uri.parse("tel:+5581996346840")
+        val intent = Intent(Intent.ACTION_CALL,uri)
+        if(intent.resolveActivity(packageManager) != null){
+            startActivity(intent)
+        }
+    }
 }

@@ -2,11 +2,15 @@ package com.example.fragments
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.fragments.databinding.ActivityMainBinding
+import com.example.fragments.viewmodel.MainViewModel
+import kotlin.getValue
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,10 +20,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+        val viewModel : MainViewModel by viewModels()
 
         enableEdgeToEdge()
         setContentView(binding.root)
         replaceFragment(HomeFragment())
+
+        viewModel.user.observe(this){
+            user -> user?.let {
+                R.string.users
+        }
+        }
 
         binding.bottomNavigationView5.setOnItemSelectedListener { item ->
             when (item.itemId) {

@@ -23,10 +23,8 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Recupera o argumento enviado
         val itemId = arguments?.getString("itemId")
 
-        // Exibe o itemId (ou outro conteúdo) na tela
         binding.txtDetail.text = "ID do item: $itemId"
     }
 

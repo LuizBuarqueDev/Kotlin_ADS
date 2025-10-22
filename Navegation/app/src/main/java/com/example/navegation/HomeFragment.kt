@@ -24,7 +24,6 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Exemplo: navegação ao clicar em um botão
         binding.btnGoToDetail.setOnClickListener {
             val action = HomeFragmentDirections
                 .actionHomeFragmentToDetailFragment(itemId = "12345")

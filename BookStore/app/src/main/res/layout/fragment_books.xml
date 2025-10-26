@@ -7,10 +7,10 @@
     android:padding="24dp">
 
     <TextView
-        android:id="@+id/textViewProfile"
+        android:id="@+id/textViewBook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Perfil"
+        android:text="Livros"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@android:color/black" />

@@ -1,16 +1,15 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("androidx.navigation.safeargs.kotlin")
-
+    id("com.google.devtools.ksp")
 }
 
 android {
-    namespace = "com.example.navegation"
+    namespace = "com.example.room"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.navegation"
+        applicationId = "com.example.room"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -27,6 +26,9 @@ android {
                 "proguard-rules.pro"
             )
         }
+        buildFeatures {
+            viewBinding = true
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -34,26 +36,32 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
-    }
-    buildFeatures {
-        viewBinding = true
-    }
-}
+    } }
 
 dependencies {
+    implementation("com.squareup.retrofit2:retrofit:3.0.0")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
-    implementation(libs.navigation.fragment.ktx)
-    implementation(libs.navigation.ui.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    val navVersion = "2.7.7"
-    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
-    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
+
+    val room_version = "2.8.3"
+
+    implementation("androidx.room:room-runtime:$room_version")
+
+    // If this project uses any Kotlin source, use Kotlin Symbol Processing (KSP)
+    // See Add the KSP plugin to your project
+    ksp("androidx.room:room-compiler:$room_version")
+
+    // If this project only uses Java source, use the Java annotationProcessor
+    // No additional plugins are necessary
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:$room_version")
 }
